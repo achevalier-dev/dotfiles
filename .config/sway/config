@@ -38,11 +38,11 @@ for_window [title=".*"] inhibit_idle fullscreen
 
 
 # Output config
-output * bg ~/.config/hypr/wallpaper_effects/.wallpaper_current fill
+output * bg ~/.cache/sway/.wallpaper_current fill
 output DP-1 resolution 3840x2160 scale 1 adaptive_sync on transform 270 position 0 0
 output DP-2 scale 1.25 position 2160 0
-output HDMI-A-1 scale 1.5
-output eDP-1 scale 1.5
+output HDMI-A-1 scale 1.0
+output eDP-1 scale 1.0
 
 # Input config
 input * {
