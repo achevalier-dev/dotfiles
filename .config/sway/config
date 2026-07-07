@@ -7,8 +7,10 @@ set $term kitty tmux -u
 set $files thunar
 
 # Export environment to systemd so portals (file picker, screenshots) work
+exec systemctl --user set-environment XDG_CURRENT_DESKTOP=sway
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+exec systemctl --user start --no-block sway-session.target
 
 # Idle config (no dpms off — causes crashes on Asahi/Apple Silicon)
 # 5min: lock, 10min: dim screen (not to 0 — causes white screen on Asahi)
@@ -37,7 +39,8 @@ for_window [title=".*"] inhibit_idle fullscreen
 
 # Output config
 output * bg ~/.config/hypr/wallpaper_effects/.wallpaper_current fill
-output DP-1 resolution 3840x2160 scale 1.25 adaptive_sync on
+output DP-1 resolution 3840x2160 scale 1 adaptive_sync on transform 270 position 0 0
+output DP-2 scale 1.25 position 2160 0
 output HDMI-A-1 scale 1.5
 output eDP-1 scale 1.5
 
