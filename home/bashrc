@@ -16,6 +16,32 @@ export PATH
 
 # User specific aliases and functions
 alias clauded='claude --dangerously-skip-permissions'
+
+# llmgateway (oclaude) — creds live in ~/.config/llmgateway/env (git-ignored, not in this repo)
+[ -f ~/.config/llmgateway/env ] && . ~/.config/llmgateway/env
+
+oclaude() {
+  ANTHROPIC_BASE_URL="$LLMGW_BASE" \
+  ANTHROPIC_AUTH_TOKEN="$LLMGW_TOKEN" \
+  ANTHROPIC_MODEL="deepseek-v4-pro" \
+  claude --dangerously-skip-permissions "$@"
+}
+
+# list all models the gateway exposes (live query)
+oclaude-models() {
+  curl -sS -m 15 "$LLMGW_BASE/v1/models" \
+    -H "Authorization: Bearer $LLMGW_TOKEN" \
+  | jq -r '.data[] | "\(.id) | \(.name)"' "$@"
+}
+
+# fuzzy-pick a model from the gateway catalog, then launch oclaude with it
+oclaude-pick() {
+  local sel m
+  sel=$(oclaude-models | fzf --prompt="llmgateway model> " --height=50% --reverse --info=inline) || return $?
+  m="${sel%% | *}"
+  echo "launching: oclaude --model $m" >&2
+  oclaude --model "$m"
+}
 if [ -d ~/.bashrc.d ]; then
     for rc in ~/.bashrc.d/*; do
         if [ -f "$rc" ]; then
