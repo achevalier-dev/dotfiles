@@ -1,216 +1,362 @@
 // -*- mode: jsonc -*-
+// Everforest Dark · floating islands
 {
-    // "layer": "top", // Waybar at top layer
-    "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 30, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
-    "spacing": 4, // Gaps between modules (4px)
-    // Choose the order of the modules
+    "layer": "top",
+    "position": "top",
+    "spacing": 0,
+    "margin-top": 2,
+    "margin-left": 4,
+    "margin-right": 4,
+    "reload_style_on_change": true,
+
     "modules-left": [
-        "sway/workspaces",
-        "sway/mode",
-        "sway/scratchpad",
+        "group/ws",
         "custom/media"
     ],
     "modules-center": [
         "sway/window"
     ],
     "modules-right": [
-        "mpd",
-        "pulseaudio",
-        "network",
-        "power-profiles-daemon",
-        "cpu",
-        "memory",
-        "temperature",
-        "backlight",
-        "battery",
-        "battery#bat2",
+        "group/utils",
+        "group/sysinfo",
+        "group/conn",
+        "group/energy",
         "clock",
-        "tray",
         "custom/power"
     ],
-    // Modules configuration
-    // "sway/workspaces": {
-    //     "disable-scroll": true,
-    //     "all-outputs": true,
-    //     "warp-on-scroll": false,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
-    //         "1": "",
-    //         "2": "",
-    //         "3": "",
-    //         "4": "",
-    //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
-    // },
-    "keyboard-state": {
-        "numlock": true,
-        "capslock": true,
-        "format": "{name} {icon}",
-        "format-icons": {
-            "locked": "",
-            "unlocked": ""
+
+    // ── Groups (each renders as one island) ──────────────────────────
+    "group/ws": {
+        "orientation": "horizontal",
+        "modules": [
+            "sway/workspaces",
+            "sway/mode",
+            "sway/scratchpad"
+        ]
+    },
+    "group/utils": {
+        "orientation": "horizontal",
+        "modules": [
+            "privacy",
+            "idle_inhibitor",
+            "custom/notification",
+            "tray"
+        ]
+    },
+    // Drawers: the FIRST module is the always-visible handle, the rest reveal
+    // on hover. Handles are chosen to stay useful while collapsed — cpu shows
+    // load, network shows offline state, battery shows charge.
+    "group/sysinfo": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 300,
+            "transition-left-to-right": false,
+            "children-class": "drawer-child"
+        },
+        "modules": [
+            "cpu",
+            "memory",
+            "temperature"
+        ]
+    },
+    "group/conn": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 300,
+            "transition-left-to-right": false,
+            "children-class": "drawer-child"
+        },
+        "modules": [
+            "network",
+            "pulseaudio",
+            "bluetooth"
+        ]
+    },
+    "group/energy": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 300,
+            "transition-left-to-right": false,
+            "children-class": "drawer-child"
+        },
+        "modules": [
+            // "power-profiles-daemon" dropped: TLP replaced tuned-ppd and does
+            // not implement the PPD D-Bus interface, so the module can only error.
+            "battery",
+            "backlight"
+        ]
+    },
+
+    // ── Left ─────────────────────────────────────────────────────────
+    "sway/workspaces": {
+        "disable-scroll": false,
+        "all-outputs": false,
+        "warp-on-scroll": false,
+        // Plain digits: the Nerd Font circled numerals (󰲠 󰲢 …) render thin and
+        // low-contrast at bar sizes. Styling carries the state instead.
+        "format": "{name}",
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": []
         }
     },
+
     "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
+        "format": "󰌌 <span style=\"italic\">{}</span>",
+        "tooltip": false
     },
+
     "sway/scratchpad": {
-        "format": "{icon} {count}",
+        "format": "󰘸 {count}",
         "show-empty": false,
-        "format-icons": ["", ""],
         "tooltip": true,
         "tooltip-format": "{app}: {title}"
     },
-    "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-        "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-        "unknown-tag": "N/A",
-        "interval": 5,
-        "consume-icons": {
-            "on": " "
-        },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
-        },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "tooltip-format": "MPD (connected)",
-        "tooltip-format-disconnected": "MPD (disconnected)"
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
+
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 45,
+        "escape": true,
         "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
+            "playing": "󰎇",
+            "paused": "󰏤"
+        },
+        "exec": "$HOME/.config/waybar/scripts/media.sh",
+        "on-click": "playerctl play-pause",
+        "on-click-right": "playerctl next",
+        "on-click-middle": "playerctl previous",
+        "on-scroll-up": "playerctl volume 0.05+",
+        "on-scroll-down": "playerctl volume 0.05-"
     },
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10,
-        // "icons": {
-        //   "blueman": "bluetooth",
-        //   "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
-        // }
-    },
-    "clock": {
-        // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
-    },
-    "cpu": {
-        "format": "{usage}% ",
+
+    // ── Center ───────────────────────────────────────────────────────
+    "sway/window": {
+        "format": "{title}",
+        "max-length": 48,
+        "separate-outputs": true,
+        "icon": true,
+        "icon-size": 13,
+        "rewrite": {
+            "(.*) — Mozilla Firefox": "$1",
+            "(.*) - Brave": "$1",
+            "(.*) - Visual Studio Code": "$1",
+            "(.*) - Thunar": "󰉋  $1"
+        },
         "tooltip": false
     },
+
+    // ── Right · utils ────────────────────────────────────────────────
+    "privacy": {
+        "icon-spacing": 6,
+        "icon-size": 13,
+        "transition-duration": 250,
+        "modules": [
+            { "type": "screenshare", "tooltip": true },
+            { "type": "audio-in", "tooltip": true }
+        ]
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "tooltip-format-activated": "Idle inhibited — screen stays on",
+        "tooltip-format-deactivated": "Idle normal — screen may lock",
+        "format-icons": {
+            "activated": "󰅶",
+            "deactivated": "󰛊"
+        }
+    },
+
+    "custom/notification": {
+        "tooltip": true,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "󰂚",
+            "none": "󰂜",
+            "dnd-notification": "󰂛",
+            "dnd-none": "󰂛",
+            "inhibited-notification": "󰂚",
+            "inhibited-none": "󰂜",
+            "dnd-inhibited-notification": "󰂛",
+            "dnd-inhibited-none": "󰂛"
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+
+    "tray": {
+        "icon-size": 13,
+        "spacing": 6
+    },
+
+    // ── Right · sysinfo ──────────────────────────────────────────────
+    // Poll intervals below are deliberately slow: these modules sit collapsed
+    // inside drawers and poll regardless of visibility, so each tick is a CPU
+    // wakeup buying a number nobody is looking at.
+    "cpu": {
+        "interval": 5,
+        "format": "󰻠 {usage}%",
+        "tooltip-format": "CPU {usage}%  ·  load {load}\n\nClick: btop",
+        "on-click": "kitty -e btop"
+    },
+
     "memory": {
-        "format": "{}% "
+        "interval": 10,
+        "format": "󰍛 {percentage}%",
+        "tooltip-format": "RAM  {used:0.1f}G / {total:0.1f}G\nSwap {swapUsed:0.1f}G / {swapTotal:0.1f}G\n\nClick: btop",
+        "on-click": "kitty -e btop"
     },
+
     "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "critical-threshold": 80,
-        // "format-critical": "{temperatureC}°C {icon}",
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
+        // Package id 0 — stable path, survives hwmon renumbering
+        "hwmon-path-abs": "/sys/devices/platform/coretemp.0/hwmon",
+        "input-filename": "temp1_input",
+        "critical-threshold": 82,
+        "interval": 10,
+        "format": "{icon} {temperatureC}°",
+        "format-icons": ["󰈸", "󰈸", "󰈸"],
+        "tooltip-format": "CPU package: {temperatureC}°C"
     },
+
+    // ── Right · conn ─────────────────────────────────────────────────
+    "pulseaudio": {
+        "scroll-step": 5,
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "󰂰 {volume}%",
+        "format-bluetooth-muted": "󰝟 ",
+        "format-muted": "󰝟 muted",
+        "format-source": "󰍬 {volume}%",
+        "format-source-muted": "󰍭",
+        "format-icons": {
+            "headphone": "󰋋",
+            "hands-free": "󰋎",
+            "headset": "󰋎",
+            "phone": "󰏲",
+            "portable": "󰏲",
+            "car": "󰄋",
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "tooltip-format": "{desc} · {volume}%\n\nClick: devices · Middle: pavucontrol · Right: mute · Scroll: volume",
+        "on-click": "$HOME/.config/waybar/scripts/audio-menu.sh",
+        "on-click-middle": "pavucontrol",
+        "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+    },
+
+    "network": {
+        "interval": 10,
+        // Icon only — the SSID is long ("Bbox-62891E69") and lives in the tooltip.
+        "format-wifi": "{icon}",
+        "format-ethernet": "󰈁",
+        "format-linked": "󰈂",
+        "format-disconnected": "󰤭",
+        "format-icons": ["󰤟", "󰤢", "󰤥", "󰤨"],
+        "tooltip-format-wifi": "{essid}  ({signalStrength}%)\n{ifname} · {ipaddr}\n󰇚 {bandwidthDownBytes}  󰕒 {bandwidthUpBytes}\n\nClick: networks · Middle: toggle Wi-Fi · Right: settings",
+        "tooltip-format-ethernet": "{ifname} · {ipaddr}\n󰇚 {bandwidthDownBytes}  󰕒 {bandwidthUpBytes}\n\nClick: networks · Right: settings",
+        "tooltip-format-disconnected": "No network\n\nClick: pick a network",
+        "max-length": 22,
+        "on-click": "$HOME/.config/waybar/scripts/wifi-menu.sh",
+        "on-click-middle": "sh -c 'if nmcli radio wifi | grep -q enabled; then nmcli radio wifi off; else nmcli radio wifi on; fi'",
+        "on-click-right": "nm-connection-editor"
+    },
+
+    "bluetooth": {
+        "format": "󰂯",
+        "format-disabled": "󰂲",
+        "format-off": "󰂲",
+        "format-connected": "󰂱 {num_connections}",
+        "tooltip-format": "{controller_alias}\n\nClick: devices · Middle: toggle · Right: Blueman",
+        "tooltip-format-connected": "{controller_alias}\n\n{device_enumerate}\n\nClick: devices · Middle: toggle · Right: Blueman",
+        "tooltip-format-enumerate-connected": "󰂱 {device_alias}",
+        "tooltip-format-enumerate-connected-battery": "󰂱 {device_alias}  󰁹 {device_battery_percentage}%",
+        "on-click": "$HOME/.config/waybar/scripts/bluetooth-menu.sh",
+        "on-click-middle": "sh -c 'if bluetoothctl show | grep -q \"Powered: yes\"; then bluetoothctl power off; else bluetoothctl power on; fi'",
+        "on-click-right": "blueman-manager"
+    },
+
+    // ── Right · energy ───────────────────────────────────────────────
     "backlight": {
-        // "device": "acpi_video1",
-        "format": "{percent}% {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["󰃚", "󰃛", "󰃜", "󰃝", "󰃞", "󰃟", "󰃠"],
+        "tooltip-format": "Backlight {percent}%\n\nScroll: brightness",
+        "on-scroll-up": "brightnessctl set 5%+",
+        "on-scroll-down": "brightnessctl set 5%-"
     },
+
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+        "tooltip": true,
+        "format-icons": {
+            "default": "󰗑",
+            "performance": "󰓅",
+            "balanced": "󰾅",
+            "power-saver": "󰌪"
+        }
+    },
+
     "battery": {
+        "interval": 60,
         "states": {
-            // "good": 95,
+            "good": 80,
             "warning": 30,
             "critical": 15
         },
-        "format": "{capacity}% {icon}",
-        "format-full": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰚥 {capacity}%",
+        "format-full": "󰁹 full",
+        // Click swaps the label to time remaining; click again to go back.
+        "format-alt": "{icon} {time}",
+        "format-time": "{H}h {M}m",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "tooltip-format": "{capacity}%  ·  {timeTo}\n\nDraw    {power:0.1f} W\nHealth  {health}\nCycles  {cycles}\n\nClick: toggle time left"
     },
-    "battery#bat2": {
-        "bat": "BAT2"
-    },
-    "power-profiles-daemon": {
-      "format": "{icon}",
-      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
-      "tooltip": true,
-      "format-icons": {
-        "default": "",
-        "performance": "",
-        "balanced": "",
-        "power-saver": ""
-      }
-    },
-    "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": " ",
-        "tooltip-format": "{ifname}",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}"
-    },
-    "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
+
+    // ── Right · standalone ───────────────────────────────────────────
+    "clock": {
+        "interval": 30,
+        "format": "󰥔 {:%H:%M}",
+        "format-alt": "󰃭 {:%a %d %b}",
+        "tooltip-format": "<span size='11500'><tt>{calendar}</tt></span>",
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "format": {
+                "months":  "<span color='#d3c6aa'><b>{}</b></span>",
+                "days":    "<span color='#9da9a0'>{}</span>",
+                "weeks":   "<span color='#7fbbb3'><b>W{}</b></span>",
+                "weekdays":"<span color='#dbbc7f'><b>{}</b></span>",
+                "today":   "<span color='#a7c080'><b><u>{}</u></b></span>"
+            }
         },
-        "on-click": "pavucontrol"
+        "actions": {
+            "on-click-right": "mode",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
     },
-    "custom/media": {
-        "format": "{icon} {text}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": "",
-            "default": "🎜"
-        },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-    },
+
     "custom/power": {
-        "format" : "⏻ ",
-		"tooltip": false,
-		"menu": "on-click",
-		"menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
-		"menu-actions": {
-			"shutdown": "shutdown",
-			"reboot": "reboot",
-			"suspend": "systemctl suspend",
-			"hibernate": "systemctl hibernate"
-		}
+        "format": "󰐥",
+        "tooltip": false,
+        "menu": "on-click",
+        "menu-file": "$HOME/.config/waybar/power_menu.xml",
+        "menu-actions": {
+            "lock": "swaylock -f",
+            "suspend": "systemctl suspend",
+            "hibernate": "systemctl hibernate",
+            "logout": "swaymsg exit",
+            "reboot": "systemctl reboot",
+            "shutdown": "systemctl poweroff"
+        }
     }
 }
