@@ -3,3 +3,5 @@
 .cache/
 # local-only secrets — must never be tracked
 .config/llmgateway/env
+*.bak-*
+*.save
