@@ -1,10 +1,10 @@
-image=$HOME/.config/hypr/wallpaper_effects/.wallpaper_current
+image=$HOME/.cache/sway/.wallpaper_current
 scaling=fill
 
 # Blur effect (swaylock supports this natively with --effect-blur if swaylock-effects)
-# Using plain swaylock: show wallpaper + Everforest color indicators
+# Using plain swaylock: show wallpaper + NC Night color indicators
 
-# Ring/key indicator colors (Everforest Dark)
+# Ring/key indicator colors (NC Night)
 ring-color=2D353B
 ring-ver-color=A7C080
 ring-wrong-color=E67E80

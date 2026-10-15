@@ -2,20 +2,21 @@
     "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
     // Everforest Dark greeting · ANSI names map to the kitty palette
     "logo": {
-        "type": "file",
-        "source": "~/.config/fastfetch/forest.txt",
-        "color": { "1": "green", "2": "cyan", "3": "yellow", "4": "90" },
-        "padding": { "top": 1, "left": 2, "right": 3 }
+        "type": "file-raw",
+        "source": "~/.config/fastfetch/nc.ans",
+        "width": 52,
+        "height": 9,
+        "padding": { "top": 4, "left": 2, "right": 3 }
     },
     "display": {
         "separator": "  ",
         "key": { "width": 12 },
-        "color": { "keys": "green", "output": "white" },
+        "color": { "keys": "magenta", "output": "white" },
         "bar": {
             "width": 12,
             "char": { "elapsed": "━", "total": "━" },
             "border": { "left": "", "right": "" },
-            "color": { "elapsed": "green", "total": "90" }
+            "color": { "elapsed": "magenta", "total": "90" }
         },
         "percent": { "color": { "green": "green", "yellow": "yellow", "red": "red" } }
     },
@@ -23,15 +24,15 @@
         {
             "type": "command",
             "key": " ",
-            "text": "h=$(date +%H); if [ $h -lt 6 ]; then g='late night'; elif [ $h -lt 12 ]; then g='good morning'; elif [ $h -lt 18 ]; then g='good afternoon'; else g='good evening'; fi; printf '%s, \\033[1;32m%s\\033[0m  \\033[90m·  %s\\033[0m' \"$g\" \"$USER\" \"$(date '+%a %d %b · %H:%M')\""
+            "text": "h=$(date +%H); if [ $h -lt 6 ]; then g='late night'; elif [ $h -lt 12 ]; then g='good morning'; elif [ $h -lt 18 ]; then g='good afternoon'; else g='good evening'; fi; printf '%s, \\033[1;35m%s\\033[0m  \\033[90m·  人馬一体  ·  %s\\033[0m' \"$g\" \"$USER\" \"$(date '+%H:%M')\""
         },
-        { "type": "custom", "format": "{#90}╭─{#green} system {#90}──────────────────────────" },
-        { "type": "os",       "key": "{#90}│{#green} 󰣛  os",     "format": "{name} {version-id}" },
-        { "type": "kernel",   "key": "{#90}│{#green}   kernel", "format": "{release}" },
-        { "type": "wm",       "key": "{#90}│{#green}   wm" },
-        { "type": "shell",    "key": "{#90}│{#green}   shell" },
-        { "type": "uptime",   "key": "{#90}│{#green} 󰅐  uptime" },
-        { "type": "packages", "key": "{#90}│{#green} 󰏗  pkgs" },
+        { "type": "custom", "format": "{#90}╭─{#magenta} system {#90}──────────────────────────" },
+        { "type": "os",       "key": "{#90}│{#magenta} 󰣛  os",     "format": "{name} {version-id}" },
+        { "type": "kernel",   "key": "{#90}│{#magenta}   kernel", "format": "{release}" },
+        { "type": "wm",       "key": "{#90}│{#magenta}   wm" },
+        { "type": "shell",    "key": "{#90}│{#magenta}   shell" },
+        { "type": "uptime",   "key": "{#90}│{#magenta} 󰅐  uptime" },
+        { "type": "packages", "key": "{#90}│{#magenta} 󰏗  pkgs" },
         { "type": "custom", "format": "{#90}├─{#yellow} hardware {#90}────────────────────────" },
         { "type": "cpu",    "key": "{#90}│{#yellow} 󰻠  cpu",  "format": "{name}", "showPeCoreCount": false },
         { "type": "gpu",    "key": "{#90}│{#yellow} 󰢮  gpu",  "format": "{name}", "hideType": "integrated" },

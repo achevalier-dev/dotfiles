@@ -12,10 +12,10 @@ configuration {
 }
 
 * {
-    bg:      #2D353B;
-    bg2:     #3D484D;
-    fg:      #D3C6AA;
-    accent:  #A7C080;
+    bg:      #13171d;
+    bg2:     #252c34;
+    fg:      #d8d3dc;
+    accent:  #ef2f6e;
 }
 
 window {

@@ -39,6 +39,8 @@ for_window [title=".*"] inhibit_idle fullscreen
 
 # Output config
 output * bg ~/.cache/sway/.wallpaper_current fill
+# NC Night: portrait 4K gets the hardtop under the stars, main screen the cockpit
+output DP-1 bg ~/Pictures/wallpapers/nc-night-portrait.jpg fill
 output DP-1 resolution 3840x2160 scale 1 adaptive_sync on transform 270 position 0 0
 output DP-2 scale 1.25 position 2160 0
 output HDMI-A-1 scale 1.0
@@ -64,12 +66,12 @@ gaps outer 5
 default_border pixel 2
 default_floating_border pixel 2
 
-# Colors (Everforest Dark)
+# Colors (NC Night)
 #                       border  bg      text    indicator child_border
-client.focused          #A7C080 #2D353B #D3C6AA #83C092   #A7C080
-client.focused_inactive #3D484D #2D353B #859289 #3D484D   #3D484D
-client.unfocused        #343F44 #2D353B #7A8478 #343F44   #343F44
-client.urgent           #E67E80 #E67E80 #2D353B #E67E80   #E67E80
+client.focused          #ef2f6e #13171d #d8d3dc #8fc1cc   #ef2f6e
+client.focused_inactive #252c34 #13171d #71868b #252c34   #252c34
+client.unfocused        #1b2128 #13171d #66757c #1b2128   #1b2128
+client.urgent           #ff5a4e #ff5a4e #13171d #ff5a4e   #ff5a4e
 
 # ---------------------
 # Keybinds

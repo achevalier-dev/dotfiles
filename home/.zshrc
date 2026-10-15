@@ -23,8 +23,8 @@ source $ZSH/oh-my-zsh.sh
 #pokemon-colorscripts --no-title -s -r #without fastfetch
 #pokemon-colorscripts --no-title -s -r | fastfetch -c $HOME/.config/fastfetch/config-pokemon.jsonc --logo-type file-raw --logo-height 10 --logo-width 5 --logo -
 
-# Everforest greeting; skipped in small tmux splits where it would wrap
-if (( COLUMNS >= 90 && LINES >= 18 )); then
+# NC Night greeting; skipped in small tmux splits where it would wrap
+if (( COLUMNS >= 100 && LINES >= 18 )); then
     fastfetch
 fi
 # Alternative configs:

@@ -1,7 +1,7 @@
-# Everforest Dark · matched to kitty / tmux / waybar
+# NC Night · matched to kitty / tmux / waybar
 "$schema" = 'https://starship.rs/config-schema.json'
 
-palette = "everforest"
+palette = "ncnight"
 add_newline = true
 command_timeout = 400
 
@@ -12,20 +12,20 @@ $fill\
 $cmd_duration$nodejs$rust$python$golang$docker_context$jobs$time
 [╰─](grey)$character"""
 
-[palettes.everforest]
-bg0    = "#2d353b"
-bg1    = "#343f44"
-bg2    = "#3d484d"
-bg3    = "#475258"
-fg     = "#d3c6aa"
-grey   = "#7a8478"
-red    = "#e67e80"
-orange = "#e69875"
-yellow = "#dbbc7f"
-green  = "#a7c080"
-aqua   = "#83c092"
-blue   = "#7fbbb3"
-purple = "#d699b6"
+[palettes.ncnight]
+bg0    = "#13171d"
+bg1    = "#1b2128"
+bg2    = "#252c34"
+bg3    = "#2f3842"
+fg     = "#d8d3dc"
+grey   = "#66757c"
+red    = "#ff5a4e"
+orange = "#f47c48"
+yellow = "#f2a541"
+green  = "#ef2f6e"
+aqua   = "#8fc1cc"
+blue   = "#7d9fd8"
+purple = "#c58be0"
 
 [fill]
 symbol = " "

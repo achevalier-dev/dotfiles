@@ -1,5 +1,5 @@
 // -*- mode: jsonc -*-
-// Everforest Dark · floating islands
+// NC Night · floating islands
 {
     "layer": "top",
     "position": "top",
@@ -320,11 +320,11 @@
             "weeks-pos": "right",
             "on-scroll": 1,
             "format": {
-                "months":  "<span color='#d3c6aa'><b>{}</b></span>",
-                "days":    "<span color='#9da9a0'>{}</span>",
-                "weeks":   "<span color='#7fbbb3'><b>W{}</b></span>",
-                "weekdays":"<span color='#dbbc7f'><b>{}</b></span>",
-                "today":   "<span color='#a7c080'><b><u>{}</u></b></span>"
+                "months":  "<span color='#d8d3dc'><b>{}</b></span>",
+                "days":    "<span color='#98a6ab'>{}</span>",
+                "weeks":   "<span color='#7d9fd8'><b>W{}</b></span>",
+                "weekdays":"<span color='#f2a541'><b>{}</b></span>",
+                "today":   "<span color='#ef2f6e'><b><u>{}</u></b></span>"
             }
         },
         "actions": {
