@@ -9,3 +9,5 @@
 - `nc-black-matte*.jpg` are regraded from wallhaven.cc [wy3mzr](https://wallhaven.cc/w/wy3mzr)
   (Mazda MX-5 NC "Black & Matte" edition press photo); the portrait cut
   extends the studio backdrop.
+- `nc-mountain-pass*.jpg` are regraded to dusk from wallhaven.cc
+  [yjr6g7](https://wallhaven.cc/w/yjr6g7); the portrait cut extends the sky.
