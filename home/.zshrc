@@ -3,7 +3,7 @@
 
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="agnosterzak"
+ZSH_THEME=""  # prompt handled by starship (~/.config/starship.toml)
 
 plugins=( 
     git
@@ -23,9 +23,21 @@ source $ZSH/oh-my-zsh.sh
 #pokemon-colorscripts --no-title -s -r #without fastfetch
 #pokemon-colorscripts --no-title -s -r | fastfetch -c $HOME/.config/fastfetch/config-pokemon.jsonc --logo-type file-raw --logo-height 10 --logo-width 5 --logo -
 
-# fastfetch. Will be disabled if above colorscript was chosen to install
+# Everforest greeting; skipped in small tmux splits where it would wrap
+if (( COLUMNS >= 90 && LINES >= 18 )); then
+    fastfetch
+fi
+# Alternative configs:
+# fastfetch -c $HOME/.config/fastfetch/config-rice.jsonc
+# fastfetch -c $HOME/.config/fastfetch/config-classic.jsonc
+# fastfetch -c $HOME/.config/fastfetch/config-compact.jsonc
+# fastfetch -c $HOME/.config/fastfetch/config-pokemon.jsonc
+# fastfetch -c $HOME/.config/fastfetch/config-v2.jsonc
+
 # Set-up FZF key bindings (CTRL R for fuzzy history finder)
 source <(fzf --zsh)
+
+eval "$(starship init zsh)"
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
@@ -42,3 +54,6 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # Claude Code: skip permission prompts
 alias clauded='claude --dangerously-skip-permissions'
+
+# opencode
+export PATH=/home/antoine/.opencode/bin:$PATH

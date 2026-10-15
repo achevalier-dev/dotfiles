@@ -1,0 +1,112 @@
+# Everforest Dark · matched to kitty / tmux / waybar
+"$schema" = 'https://starship.rs/config-schema.json'
+
+palette = "everforest"
+add_newline = true
+command_timeout = 400
+
+format = """
+[╭─](grey)\
+[](green)$os[](fg:green bg:bg2)$directory[](fg:bg2 bg:bg1)$git_branch$git_status[](fg:bg1)\
+$fill\
+$cmd_duration$nodejs$rust$python$golang$docker_context$jobs$time
+[╰─](grey)$character"""
+
+[palettes.everforest]
+bg0    = "#2d353b"
+bg1    = "#343f44"
+bg2    = "#3d484d"
+bg3    = "#475258"
+fg     = "#d3c6aa"
+grey   = "#7a8478"
+red    = "#e67e80"
+orange = "#e69875"
+yellow = "#dbbc7f"
+green  = "#a7c080"
+aqua   = "#83c092"
+blue   = "#7fbbb3"
+purple = "#d699b6"
+
+[fill]
+symbol = " "
+
+[os]
+disabled = false
+style = "fg:bg0 bg:green"
+format = "[$symbol ]($style)"
+[os.symbols]
+Fedora = ""
+Linux = ""
+
+[directory]
+style = "fg:fg bg:bg2"
+read_only = " 󰌾"
+read_only_style = "fg:red bg:bg2"
+truncation_length = 3
+truncation_symbol = "…/"
+truncate_to_repo = false
+home_symbol = "~"
+format = "[ $path ]($style)[$read_only]($read_only_style)"
+
+[git_branch]
+symbol = ""
+style = "fg:aqua bg:bg1"
+format = "[ $symbol $branch ]($style)"
+
+[git_status]
+style = "fg:yellow bg:bg1"
+format = "[($all_status$ahead_behind )]($style)"
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+modified = "!${count}"
+untracked = "?${count}"
+staged = "+${count}"
+deleted = "✘${count}"
+stashed = "≡"
+
+[cmd_duration]
+min_time = 2000
+style = "fg:yellow"
+format = "[ $duration]($style) "
+
+[nodejs]
+symbol = ""
+style = "fg:green"
+format = "[$symbol $version]($style) "
+
+[rust]
+symbol = ""
+style = "fg:orange"
+format = "[$symbol $version]($style) "
+
+[python]
+symbol = ""
+style = "fg:yellow"
+format = "[$symbol $version( \\($virtualenv\\))]($style) "
+
+[golang]
+symbol = ""
+style = "fg:aqua"
+format = "[$symbol $version]($style) "
+
+[docker_context]
+symbol = ""
+style = "fg:blue"
+format = "[$symbol $context]($style) "
+
+[jobs]
+symbol = "󰜎"
+style = "fg:purple"
+format = "[$symbol $number]($style) "
+
+[time]
+disabled = false
+time_format = "%H:%M"
+style = "fg:grey"
+format = "[ $time]($style)"
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold aqua)"
