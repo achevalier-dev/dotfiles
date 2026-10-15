@@ -1,0 +1,57 @@
+# btop theme · NC Night, mountain pass at dusk
+# Matches kitty/sway/waybar: slate shadows, dusk-blue accent, sunlit-rock ochre, forest olive.
+
+theme[main_bg]="#15181d"
+theme[main_fg]="#d8d4c9"
+theme[title]="#d8d4c9"
+theme[hi_fg]="#7f9acb"
+theme[selected_bg]="#313844"
+theme[selected_fg]="#9ab2db"
+theme[inactive_fg]="#58606c"
+theme[graph_text]="#a3a8b0"
+theme[meter_bg]="#262b34"
+theme[proc_misc]="#c9a66a"
+
+# box outlines
+theme[cpu_box]="#7f9acb"
+theme[mem_box]="#9aab6c"
+theme[net_box]="#c9a66a"
+theme[proc_box]="#a7b6cf"
+theme[div_line]="#313844"
+
+# gradients run cool (idle) to warm (busy): sky -> rock -> taillight
+theme[temp_start]="#7f9acb"
+theme[temp_mid]="#c9a66a"
+theme[temp_end]="#c9564b"
+
+theme[cpu_start]="#7f9acb"
+theme[cpu_mid]="#a7b6cf"
+theme[cpu_end]="#c9a66a"
+
+theme[free_start]="#5f7cb0"
+theme[free_mid]="#7f9acb"
+theme[free_end]="#9ab2db"
+
+theme[cached_start]="#848a95"
+theme[cached_mid]="#a3a8b0"
+theme[cached_end]="#d8d4c9"
+
+theme[available_start]="#7a8a52"
+theme[available_mid]="#9aab6c"
+theme[available_end]="#b4c28a"
+
+theme[used_start]="#c9a66a"
+theme[used_mid]="#c98a55"
+theme[used_end]="#c9564b"
+
+theme[download_start]="#5f7cb0"
+theme[download_mid]="#7f9acb"
+theme[download_end]="#9ab2db"
+
+theme[upload_start]="#a58d5c"
+theme[upload_mid]="#c9a66a"
+theme[upload_end]="#dbbe85"
+
+theme[process_start]="#7f9acb"
+theme[process_mid]="#a7b6cf"
+theme[process_end]="#c9a66a"
