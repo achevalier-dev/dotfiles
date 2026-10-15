@@ -26,7 +26,7 @@
             "key": " ",
             "text": "h=$(date +%H); if [ $h -lt 6 ]; then g='late night'; elif [ $h -lt 12 ]; then g='good morning'; elif [ $h -lt 18 ]; then g='good afternoon'; else g='good evening'; fi; printf '%s, \\033[1;37m%s\\033[0m  \\033[90m·  人馬一体  ·  %s\\033[0m' \"$g\" \"$USER\" \"$(date '+%H:%M')\""
         },
-        { "type": "custom", "format": "{#90}╭─{#31} system {#90}──────────────────────────" },
+        { "type": "custom", "format": "{#90}╭─{#34} system {#90}──────────────────────────" },
         { "type": "os",       "key": "{#90}│{#37} 󰣛  os",     "format": "{name} {version-id}" },
         { "type": "kernel",   "key": "{#90}│{#37}   kernel", "format": "{release}" },
         { "type": "wm",       "key": "{#90}│{#37}   wm" },

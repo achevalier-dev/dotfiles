@@ -68,10 +68,10 @@ default_floating_border pixel 2
 
 # Colors (NC Night)
 #                       border  bg      text    indicator child_border
-client.focused          #8a8e93 #121314 #d6d8da #a9b4bc   #8a8e93
-client.focused_inactive #26282b #121314 #7a7e83 #26282b   #26282b
-client.unfocused        #1b1c1e #121314 #6b6f73 #1b1c1e   #1b1c1e
-client.urgent           #d0574a #d0574a #121314 #d0574a   #d0574a
+client.focused          #7f9acb #15181d #d8d4c9 #a7b6cf   #7f9acb
+client.focused_inactive #262b34 #15181d #848a95 #262b34   #262b34
+client.unfocused        #1c2027 #15181d #6e7480 #1c2027   #1c2027
+client.urgent           #c9564b #c9564b #15181d #c9564b   #c9564b
 
 # ---------------------
 # Keybinds

@@ -4,24 +4,24 @@
    ═══════════════════════════════════════════════════════════════════ */
 
 /* ── Palette ─────────────────────────────────────────────────────── */
-@define-color bg_dim    #0a0b0c;
-@define-color bg0       #121314;
-@define-color bg1       #1b1c1e;
-@define-color bg2       #26282b;
-@define-color bg3       #303236;
+@define-color bg_dim    #0d0f13;
+@define-color bg0       #15181d;
+@define-color bg1       #1c2027;
+@define-color bg2       #262b34;
+@define-color bg3       #313844;
 
-@define-color fg        #d6d8da;
-@define-color grey0     #6b6f73;
-@define-color grey1     #7a7e83;
-@define-color grey2     #a4a8ac;
+@define-color fg        #d8d4c9;
+@define-color grey0     #6e7480;
+@define-color grey1     #848a95;
+@define-color grey2     #a3a8b0;
 
-@define-color red       #d0574a;
-@define-color orange    #d08350;
-@define-color yellow    #d4a35a;
-@define-color green     #b8473f;
-@define-color aqua      #a9b4bc;
-@define-color blue      #7f93a8;
-@define-color purple    #a08aa8;
+@define-color red       #c9564b;
+@define-color orange    #c98a55;
+@define-color yellow    #c9a66a;
+@define-color green     #7f9acb;
+@define-color aqua      #a7b6cf;
+@define-color blue      #6d8cc8;
+@define-color purple    #a58fae;
 
 /* ── Base ────────────────────────────────────────────────────────── */
 * {
@@ -63,11 +63,11 @@ window#waybar.hidden {
 #custom-media,
 #clock,
 #custom-power {
-    background-image: linear-gradient(180deg, #19191b 0%, #0f1011 100%);
+    background-image: linear-gradient(180deg, #1a1e25 0%, #111419 100%);
     border-radius: 999px;
     padding: 0 3px;
     margin: 2px 3px;
-    box-shadow: 0 1px 2px rgba(10, 11, 12, 0.55);
+    box-shadow: 0 1px 2px rgba(13, 15, 19, 0.55);
     transition: background-image 200ms ease, box-shadow 200ms ease;
 }
 
@@ -102,28 +102,28 @@ window#waybar.hidden {
 
 /* Per-module hover tints in each module's own accent, at low alpha — the
    capsule stays calm but the thing under the cursor is unambiguous. */
-#cpu:hover         { background-color: rgba(127, 147, 168, 0.14); border-radius: 999px; }
-#memory:hover      { background-color: rgba(160, 138, 168, 0.14); border-radius: 999px; }
-#temperature:hover { background-color: rgba(169, 180, 188, 0.14); border-radius: 999px; }
-#network:hover     { background-color: rgba(127, 147, 168, 0.14); border-radius: 999px; }
-#pulseaudio:hover  { background-color: rgba(212, 163, 90, 0.14); border-radius: 999px; }
-#bluetooth:hover   { background-color: rgba(169, 180, 188, 0.14); border-radius: 999px; }
-#battery:hover     { background-color: rgba(184, 71, 63, 0.14); border-radius: 999px; }
-#backlight:hover   { background-color: rgba(212, 163, 90, 0.14); border-radius: 999px; }
+#cpu:hover         { background-color: rgba(109, 140, 200, 0.14); border-radius: 999px; }
+#memory:hover      { background-color: rgba(165, 143, 174, 0.14); border-radius: 999px; }
+#temperature:hover { background-color: rgba(167, 182, 207, 0.14); border-radius: 999px; }
+#network:hover     { background-color: rgba(109, 140, 200, 0.14); border-radius: 999px; }
+#pulseaudio:hover  { background-color: rgba(201, 166, 106, 0.14); border-radius: 999px; }
+#bluetooth:hover   { background-color: rgba(167, 182, 207, 0.14); border-radius: 999px; }
+#battery:hover     { background-color: rgba(127, 154, 203, 0.14); border-radius: 999px; }
+#backlight:hover   { background-color: rgba(201, 166, 106, 0.14); border-radius: 999px; }
 
 /* ── Drawers ─────────────────────────────────────────────────────── */
 /* Revealed children sit behind a hairline so the group reads as one object
    with a handle, not as modules that appeared out of nowhere. */
 .drawer-child {
     padding: 0 7px;
-    border-left: 1px solid rgba(214, 216, 218, 0.10);
+    border-left: 1px solid rgba(216, 212, 201, 0.10);
 }
 
 #sysinfo:hover,
 #conn:hover,
 #energy:hover {
-    background-image: linear-gradient(180deg, #202224 0%, #161718 100%);
-    box-shadow: 0 2px 5px rgba(10, 11, 12, 0.65);
+    background-image: linear-gradient(180deg, #21262e 0%, #181c22 100%);
+    box-shadow: 0 2px 5px rgba(13, 15, 19, 0.65);
 }
 
 /* ── Workspaces ──────────────────────────────────────────────────── */
@@ -151,7 +151,7 @@ window#waybar.hidden {
 }
 
 #workspaces button:hover {
-    background-color: rgba(214, 216, 218, 0.12);
+    background-color: rgba(216, 212, 201, 0.12);
     color: @fg;
 }
 
@@ -161,16 +161,16 @@ window#waybar.hidden {
 
 #workspaces button.focused,
 #workspaces button.active {
-    background-image: linear-gradient(180deg, #cc5f55 0%, #963a33 100%);
+    background-image: linear-gradient(180deg, #9ab2db 0%, #5f7cb0 100%);
     color: @bg_dim;
     font-weight: 700;
-    box-shadow: 0 0 7px rgba(184, 71, 63, 0);
+    box-shadow: 0 0 7px rgba(127, 154, 203, 0);
 }
 
 #workspaces button.urgent {
-    background-image: linear-gradient(180deg, #de7b70 0%, #b54137 100%);
+    background-image: linear-gradient(180deg, #d97a6f 0%, #b0443a 100%);
     color: @bg_dim;
-    box-shadow: 0 0 7px rgba(208, 87, 74, 0.50);
+    box-shadow: 0 0 7px rgba(201, 86, 75, 0.50);
 }
 
 /* ── Sway mode / scratchpad ──────────────────────────────────────── */
@@ -214,7 +214,7 @@ window#waybar.empty #window {
 }
 
 #custom-media:hover {
-    background-image: linear-gradient(180deg, #202224 0%, #161718 100%);
+    background-image: linear-gradient(180deg, #21262e 0%, #181c22 100%);
 }
 
 /* ── Utils island ────────────────────────────────────────────────── */
@@ -332,16 +332,16 @@ window#waybar.empty #window {
 
 /* ── Clock — the accent anchor ───────────────────────────────────── */
 #clock {
-    background-image: linear-gradient(180deg, #cc5f55 0%, #963a33 100%);
+    background-image: linear-gradient(180deg, #9ab2db 0%, #5f7cb0 100%);
     color: @bg_dim;
     font-weight: 700;
     padding: 0 12px;
-    box-shadow: 0 0 8px rgba(184, 71, 63, 0);
+    box-shadow: 0 0 8px rgba(127, 154, 203, 0);
 }
 
 #clock:hover {
-    background-image: linear-gradient(180deg, #bcc6cc 0%, #8f9aa2 100%);
-    box-shadow: 0 0 10px rgba(169, 180, 188, 0.45);
+    background-image: linear-gradient(180deg, #bfcbdc 0%, #8fa0ba 100%);
+    box-shadow: 0 0 10px rgba(167, 182, 207, 0.45);
 }
 
 /* ── Power button ────────────────────────────────────────────────── */
@@ -352,9 +352,9 @@ window#waybar.empty #window {
 }
 
 #custom-power:hover {
-    background-image: linear-gradient(180deg, #de7b70 0%, #b54137 100%);
+    background-image: linear-gradient(180deg, #d97a6f 0%, #b0443a 100%);
     color: @bg_dim;
-    box-shadow: 0 0 8px rgba(208, 87, 74, 0.45);
+    box-shadow: 0 0 8px rgba(201, 86, 75, 0.45);
 }
 
 /* ── Tooltips ────────────────────────────────────────────────────── */
