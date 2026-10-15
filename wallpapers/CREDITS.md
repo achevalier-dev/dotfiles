@@ -6,3 +6,6 @@
   The derived wallpapers are shared under the same license.
 - `nc-night-*.jpg` are regraded from wallhaven.cc photos
   [vgjd88](https://wallhaven.cc/w/vgjd88) and [5d8v51](https://wallhaven.cc/w/5d8v51).
+- `nc-black-matte*.jpg` are regraded from wallhaven.cc [wy3mzr](https://wallhaven.cc/w/wy3mzr)
+  (Mazda MX-5 NC "Black & Matte" edition press photo); the portrait cut
+  extends the studio backdrop.
