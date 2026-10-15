@@ -11,12 +11,12 @@
     "display": {
         "separator": "  ",
         "key": { "width": 12 },
-        "color": { "keys": "magenta", "output": "white" },
+        "color": { "keys": "37", "output": "white" },
         "bar": {
             "width": 12,
             "char": { "elapsed": "━", "total": "━" },
             "border": { "left": "", "right": "" },
-            "color": { "elapsed": "magenta", "total": "90" }
+            "color": { "elapsed": "37", "total": "90" }
         },
         "percent": { "color": { "green": "green", "yellow": "yellow", "red": "red" } }
     },
@@ -24,15 +24,15 @@
         {
             "type": "command",
             "key": " ",
-            "text": "h=$(date +%H); if [ $h -lt 6 ]; then g='late night'; elif [ $h -lt 12 ]; then g='good morning'; elif [ $h -lt 18 ]; then g='good afternoon'; else g='good evening'; fi; printf '%s, \\033[1;35m%s\\033[0m  \\033[90m·  人馬一体  ·  %s\\033[0m' \"$g\" \"$USER\" \"$(date '+%H:%M')\""
+            "text": "h=$(date +%H); if [ $h -lt 6 ]; then g='late night'; elif [ $h -lt 12 ]; then g='good morning'; elif [ $h -lt 18 ]; then g='good afternoon'; else g='good evening'; fi; printf '%s, \\033[1;37m%s\\033[0m  \\033[90m·  人馬一体  ·  %s\\033[0m' \"$g\" \"$USER\" \"$(date '+%H:%M')\""
         },
-        { "type": "custom", "format": "{#90}╭─{#magenta} system {#90}──────────────────────────" },
-        { "type": "os",       "key": "{#90}│{#magenta} 󰣛  os",     "format": "{name} {version-id}" },
-        { "type": "kernel",   "key": "{#90}│{#magenta}   kernel", "format": "{release}" },
-        { "type": "wm",       "key": "{#90}│{#magenta}   wm" },
-        { "type": "shell",    "key": "{#90}│{#magenta}   shell" },
-        { "type": "uptime",   "key": "{#90}│{#magenta} 󰅐  uptime" },
-        { "type": "packages", "key": "{#90}│{#magenta} 󰏗  pkgs" },
+        { "type": "custom", "format": "{#90}╭─{#31} system {#90}──────────────────────────" },
+        { "type": "os",       "key": "{#90}│{#37} 󰣛  os",     "format": "{name} {version-id}" },
+        { "type": "kernel",   "key": "{#90}│{#37}   kernel", "format": "{release}" },
+        { "type": "wm",       "key": "{#90}│{#37}   wm" },
+        { "type": "shell",    "key": "{#90}│{#37}   shell" },
+        { "type": "uptime",   "key": "{#90}│{#37} 󰅐  uptime" },
+        { "type": "packages", "key": "{#90}│{#37} 󰏗  pkgs" },
         { "type": "custom", "format": "{#90}├─{#yellow} hardware {#90}────────────────────────" },
         { "type": "cpu",    "key": "{#90}│{#yellow} 󰻠  cpu",  "format": "{name}", "showPeCoreCount": false },
         { "type": "gpu",    "key": "{#90}│{#yellow} 󰢮  gpu",  "format": "{name}", "hideType": "integrated" },

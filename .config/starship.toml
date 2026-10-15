@@ -7,32 +7,34 @@ command_timeout = 400
 
 format = """
 [╭─](grey)\
-[](green)$os[](fg:green bg:bg2)$directory[](fg:bg2 bg:bg1)$git_branch$git_status[](fg:bg1)\
+[](chrome)$os[](fg:chrome bg:bg2)$directory[](fg:bg2 bg:bg1)$git_branch$git_status[](fg:bg1)\
 $fill\
 $cmd_duration$nodejs$rust$python$golang$docker_context$jobs$time
 [╰─](grey)$character"""
 
 [palettes.ncnight]
-bg0    = "#13171d"
-bg1    = "#1b2128"
-bg2    = "#252c34"
-bg3    = "#2f3842"
-fg     = "#d8d3dc"
-grey   = "#66757c"
-red    = "#ff5a4e"
-orange = "#f47c48"
-yellow = "#f2a541"
-green  = "#ef2f6e"
-aqua   = "#8fc1cc"
-blue   = "#7d9fd8"
-purple = "#c58be0"
+bg0    = "#121314"
+bg1    = "#1b1c1e"
+bg2    = "#26282b"
+bg3    = "#303236"
+fg     = "#d6d8da"
+grey   = "#6b6f73"
+red    = "#d0574a"
+orange = "#d08350"
+yellow = "#d4a35a"
+green  = "#9fb88a"
+chrome = "#a4a8ac"
+accent = "#b8473f"
+aqua   = "#a9b4bc"
+blue   = "#7f93a8"
+purple = "#a08aa8"
 
 [fill]
 symbol = " "
 
 [os]
 disabled = false
-style = "fg:bg0 bg:green"
+style = "fg:bg0 bg:chrome"
 format = "[$symbol ]($style)"
 [os.symbols]
 Fedora = ""
@@ -107,6 +109,6 @@ style = "fg:grey"
 format = "[ $time]($style)"
 
 [character]
-success_symbol = "[❯](bold green)"
+success_symbol = "[❯](bold accent)"
 error_symbol = "[❯](bold red)"
 vimcmd_symbol = "[❮](bold aqua)"
